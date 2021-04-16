@@ -1,0 +1,3 @@
+janet, ekoh, 123456
+emmanuel, mingle, 123456
+enoch, bonsu, 123456
