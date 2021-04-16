@@ -29,12 +29,13 @@ if(count($_SESSION) != 0){
 </style>
 <body>
         <div class="header">
-            <h1> PLEASE RESET PASSWORD <h1>
-            <h2> PLEASE ENTER THE PASSWORD BELOW <h2>
+            <h1>  RESET PASSWORD <h1>
+            <h2> PLEASE ENTER YOUR EMAIL PASSWORD BELOW <h2>
         </div>
         <div class="form">
             <form method="POST">                                    
                 <input type="password" id="pword" name="pword" placeholder="PASSWORD"><br><br>
+                <input type="email" id="email" name="email" placeholder="test@email.com"><br><br>
                 <input type="submit" name="submit" value="submit">                
             </form>
         </div>

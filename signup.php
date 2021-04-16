@@ -38,6 +38,7 @@
             <form method="POST">                                    
                 <input type="text" id="fname" name="fname" placeholder="FIRST NAME"><br><br>
                 <input type="text" id="lname" name="lname" placeholder="LAST NAME"><br><br>
+                <input type="email" id="email" name="email" placeholder="test@email.com"><br><br>
                 <input type="password" id="pword" name="pword" placeholder="PASSWORD"><br><br>
                 <input type="submit" name="submit" value="submit">               
             </form>
@@ -49,6 +50,7 @@
 
                 $firstname=strtolower($_POST['fname']);
                 $lastname=strtolower($_POST['lname']);
+                $email=strtolower($_POST['email']);
                 $password=$_POST['pword'];
                 $message='';
 
@@ -60,6 +62,10 @@
                 if(empty($lastname)) 
                 {
                   $message .= "<li>Please enter last name</li>";
+                }
+                if(empty($email)) 
+                {
+                  $message .= "<li>Please enter your email</li>";
                 }
                 if(empty($password)) 
                 {
@@ -73,12 +79,12 @@
                 } else{
 
                     $userfile = 'userdata.txt'; 
-                    $userinfo= $firstname. ", ". $lastname. ", " . $password. "\n";
+                    $userinfo= $firstname.",".$lastname.",".$email.",".$password."\n";
                     $fileopenr = fopen($userfile, 'r');
                     $fileread = fread($fileopenr, filesize($userfile));
-                    $pos = strpos( $fileread, $userinfo);                   
+                    $searchposition = strpos( $fileread, $userinfo);                   
 
-                    if ($pos === false) {
+                    if ($searchposition === false) {
                          $fileopena = fopen($userfile,"a");
                          fwrite($fileopena, $userinfo);
                          fclose($fileopena);

@@ -43,6 +43,7 @@ session_start();
             <form method="POST">                                    
                 <input type="text" id="fname" name="fname" placeholder="FIRST NAME"><br><br>
                 <input type="text" id="lname" name="lname" placeholder="LAST NAME"><br><br>
+                <input type="email" id="email" name="email" placeholder="test@email.com"><br><br>
                 <input type="password" id="pword" name="pword" placeholder="PASSWORD"><br><br>
                 <input type="submit" name="submit" value="submit">               
             </form>
@@ -54,6 +55,7 @@ session_start();
 
                 $firstname=trim(strtolower($_POST['fname']));
                 $lastname=trim(strtolower($_POST['lname']));
+                $email=trim(strtolower($_POST['email']));
                 $password=$_POST['pword'];
                 $message='';
 
@@ -66,6 +68,10 @@ session_start();
                 {
                   $message .= "<li>Please enter last name</li>";
                 }
+                if(empty($email)) 
+                {
+                  $message .= "<li>Please enter your email</li>";
+                }
                 if(empty($password)) 
                 {
                   $message .= "<li>Please enter password</li>";
@@ -73,16 +79,17 @@ session_start();
               
                 if(!empty($message)) 
                 {
-                    echo "<script type='text/javascript'>alert('$message');</script>";
+                    echo "<script type='text/javascript'>alert('<ul>$message<ul>');</script>";
 
                 } else{
 
                     $_SESSION['fname'] = $firstname;
                     $_SESSION['lname'] = $lastname;
+                    $_SESSION['email'] = $email;
                     
                     
                     $userfile = 'userdata.txt'; 
-                    $userinfo= $firstname. ", ". $lastname. ", " . $password. "\n";
+                    $userinfo= $firstname.",".$lastname.",".$email.",".$password."\n";
                     $fileopenr = fopen($userfile, 'r');
                     $fileread = fread($fileopenr, filesize($userfile));
                     $searchposition = strpos( $fileread, $userinfo);                   
